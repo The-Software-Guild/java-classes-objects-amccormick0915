@@ -116,8 +116,12 @@ public class LibraryController {
         view.displayBannerAddDVD();
         DVD newDVD = view.getDVDdetails();
         while(true){
-            if(dao.checkIfTitleExists(newDVD) && view.displayUnsuccessfulDVDaddition()){
+            if(dao.checkIfTitleExists(newDVD) ){
+                if(view.displayUnsuccessfulDVDaddition()){
                     newDVD.setTitle(view.setFailedDVDtitle());
+                } else {
+                    return;
+                }
             } else {
                 break;
             }
